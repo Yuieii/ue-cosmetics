@@ -19,7 +19,7 @@
       "io.github.yuieii.cosmetics.fabric.UeCosmeticsFabric"
     ],
     "client": [
-      "io.github.yuieii.cosmetics.fabric.client.ExampleModFabricClient"
+      "io.github.yuieii.cosmetics.fabric.client.UeCosmeticsFabricClient"
     ]
   },
   "mixins": [

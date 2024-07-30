@@ -3,11 +3,14 @@ package io.github.yuieii.cosmetics.util;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 public final class OptionalBoolean {
+    // OptionalBoolean has only 3 possible values, which are both boolean values (true and false) and an empty value.
+    // Cache these value and make this 3 instances only.
     private static final OptionalBoolean EMPTY = new OptionalBoolean();
     private static final OptionalBoolean TRUE = new OptionalBoolean();
     private static final OptionalBoolean FALSE = new OptionalBoolean();
@@ -16,22 +19,44 @@ public final class OptionalBoolean {
 
     }
 
+    /**
+     * Returns an empty {@link OptionalBoolean} instance. No value is present for this {@link OptionalBoolean}.
+     * @return an empty {@link OptionalBoolean}.
+     */
     public static OptionalBoolean empty() {
         return EMPTY;
     }
 
+    /**
+     * Returns an {@link OptionalBoolean} indicating {@code true}.
+     * @return an {@link OptionalBoolean} indicating {@code true}
+     */
     public static OptionalBoolean trueValue() {
         return TRUE;
     }
 
+    /**
+     * Returns an {@link OptionalBoolean} indicating {@code false}.
+     * @return an {@link OptionalBoolean} indicating {@code false}
+     */
     public static OptionalBoolean falseValue() {
         return FALSE;
     }
 
+    /**
+     * Returns an {@link OptionalBoolean} indicating the given boolean value.
+     * @param value the value to describe
+     * @return an {@link OptionalBoolean} with the value present
+     */
     public static OptionalBoolean of(boolean value) {
         return value ? TRUE : FALSE;
     }
 
+    /**
+     * Returns an {@link OptionalBoolean} indicating the given boolean value, if non-null, otherwise an empty {@link OptionalBoolean}.
+     * @param value the possibly-{@code null} value to describe
+     * @return an {@link OptionalBoolean} with the value present if the specified value is non-null, otherwise an empty {@link OptionalBoolean}
+     */
     public static OptionalBoolean ofNullable(@Nullable Boolean value) {
         if (value == null) return EMPTY;
         return OptionalBoolean.of(value);
@@ -57,8 +82,13 @@ public final class OptionalBoolean {
         return this == FALSE;
     }
 
+    /**
+     * If a value is present, returns the value, otherwise throws {@link NoSuchElementException}.
+     * @return the non-{@code null} value described by this {@link OptionalBoolean}
+     * @throws NoSuchElementException if no value is present
+     */
     public boolean get() {
-        if (this.isEmpty()) throw new IllegalStateException("Value not present");
+        if (this.isEmpty()) throw new NoSuchElementException("Value not present");
         return this == TRUE;
     }
 
