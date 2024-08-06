@@ -4,6 +4,7 @@ package io.github.yuieii.cosmetics.util;
 import com.mojang.blaze3d.platform.NativeImage;
 
 import java.awt.*;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public final class UeUtils {
@@ -22,5 +23,13 @@ public final class UeUtils {
 
     public static Color colorAtPixel(NativeImage image, int x, int y) {
         return UeUtils.colorFromHexInFormatABGR(image.getPixelRGBA(x, y));
+    }
+
+    public static <T> void with(T obj, Consumer<T> consumer) {
+        consumer.accept(obj);
+    }
+
+    public static <T> UeOperationContext<T> with(T obj) {
+        return UeOperationContext.with(obj);
     }
 }

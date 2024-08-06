@@ -6,6 +6,8 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.github.yuieii.cosmetics.modifier.IBodyPartModifier;
 import io.github.yuieii.cosmetics.modifier.IHeadPartModifier;
 import io.github.yuieii.cosmetics.util.ClientModRegistries;
+import io.github.yuieii.cosmetics.util.UeOperationContext;
+import io.github.yuieii.cosmetics.util.UeUtils;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -30,13 +32,13 @@ public class PlayerModifierLayer extends RenderLayer<AbstractClientPlayer, Playe
         ClientModRegistries.MODIFIERS.stream()
                 .filter(m -> m.isApplicable(player))
                 .forEach(m -> {
-                    if (m instanceof IHeadPartModifier h) {
-                        h.renderPlayerHeadPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
-                    }
-
-                    if (m instanceof IBodyPartModifier b) {
-                        b.renderPlayerBodyPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
-                    }
+                    UeUtils.with(m)
+                            .ifInstanceOf(IHeadPartModifier.class, t -> {
+                                t.renderPlayerHeadPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
+                            })
+                            .ifInstanceOf(IBodyPartModifier.class, t -> {
+                                t.renderPlayerBodyPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
+                            });
                 });
     }
 }
