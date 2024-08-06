@@ -1,12 +1,14 @@
+// Copyright (c) 2024 Yuieii.
 package io.github.yuieii.cosmetics.util;
 
 import com.mojang.blaze3d.platform.NativeImage;
 
 import java.awt.*;
+import java.util.stream.Stream;
 
 public final class UeUtils {
     private UeUtils() {
-
+        // Utility class. Do not initialize.
     }
 
     public static Color colorFromHexInFormatABGR(int hex) {

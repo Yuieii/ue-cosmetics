@@ -1,9 +1,8 @@
+// Copyright (c) 2024 Yuieii.
 package io.github.yuieii.cosmetics.modifier;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import io.github.yuieii.cosmetics.dev.DebugConstants;
 import io.github.yuieii.cosmetics.util.OptionalBoolean;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.player.AbstractClientPlayer;
 
 import java.awt.*;

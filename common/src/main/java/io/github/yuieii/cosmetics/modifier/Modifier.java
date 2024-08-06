@@ -11,12 +11,20 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class Modifier {
+    /**
+     * Returns the texture {@link ResourceLocation} of the modifier icon.
+     * @return the texture {@link ResourceLocation} of the modifier icon
+     */
     public ResourceLocation getIcon() {
         return Optional.ofNullable(this.getKey())
                 .map(r -> r.withPrefix("textures/" + Modifier.registryKey() + "/"))
                 .orElse(UeCosmetics.location("textures/gui/unknown_modifier.png"));
     }
 
+    /**
+     * Returns a list of {@link Component}s indicating the description of the modifier, line by line.
+     * @return a list of {@link Component}s indicating the description of the modifier, line by line
+     */
     public List<Component> getDescription() {
         return List.of();
     }
@@ -33,6 +41,11 @@ public abstract class Modifier {
         return ClientModRegistries.MODIFIERS.getKey(this);
     }
 
+    /**
+     * Tests if the player can apply this modifier.
+     * @param player the target player to test
+     * @return {@code true} if the player can apply this modifier, otherwise {@code false}
+     */
     public abstract boolean isApplicable(AbstractClientPlayer player);
 
     private static String registryKey() {

@@ -1,6 +1,8 @@
 // Copyright (c) 2024 Yuieii.
 package io.github.yuieii.cosmetics;
 
+import io.github.yuieii.cosmetics.util.Cached;
+import io.github.yuieii.cosmetics.util.Lazy;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public final class UeCosmetics {
     /**
-     * The ID of this mod. It is the namespace of all the {@link ResourceLocation} this
+     * The ID of this mod. It is the namespace of all the {@link ResourceLocation} this mod owns.
      */
     public static final String MOD_ID = "ue-cosmetics";
 

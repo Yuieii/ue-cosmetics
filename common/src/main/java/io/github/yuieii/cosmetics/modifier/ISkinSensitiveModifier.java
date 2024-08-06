@@ -1,3 +1,4 @@
+// Copyright (c) 2024 Yuieii.
 package io.github.yuieii.cosmetics.modifier;
 
 import com.mojang.blaze3d.platform.NativeImage;
@@ -35,7 +36,7 @@ public interface ISkinSensitiveModifier {
             return false;
         }
 
-        NativeImage image = UeCosmeticsClient.getTextureStore().get(simple);
+        NativeImage image = UeCosmeticsClient.getInstance().getTextureStore().get(simple);
         return this.isSkinApplicable(image);
     }
 

@@ -1,3 +1,4 @@
+// Copyright (c) 2024 Yuieii.
 package io.github.yuieii.cosmetics.mixin.client;
 
 import com.mojang.blaze3d.platform.NativeImage;
@@ -13,7 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SimpleTextureMixin {
     @Inject(method = "doLoad", at = @At("HEAD"))
     public void ueCosmetics$injectDoLoad(NativeImage image, boolean blur, boolean clamp, CallbackInfo ci) {
-        SimpleTexture self = MixinUtils.castSelf(this);
-        UeCosmeticsClient.getTextureStore().register(self, image);
+        MixinUtils.tryCastFrom(this, SimpleTexture.class).ifPresent(t -> {
+            UeCosmeticsClient.getInstance().getTextureStore().register(t, image);
+        });
     }
 }

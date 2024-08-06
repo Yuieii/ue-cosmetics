@@ -12,6 +12,7 @@ public final class Modifiers {
     // public static final Modifier CAT_EARS = register("cat_ears", new ISkinSensitiveModifier());
     // public static final Modifier CAT_TAIL = register("cat_tail", new ISkinSensitiveModifier());
     // public static final Modifier EEVEE = register("eevee", new ISkinSensitiveModifier());
+
     public static final Modifier MUSHROOM = register("mushroom", new MushroomModifier());
 
     private static <T extends Modifier> T register(String name, T modifier) {

@@ -1,3 +1,4 @@
+// Copyright (c) 2024 Yuieii.
 package io.github.yuieii.cosmetics.util;
 
 import com.mojang.blaze3d.platform.NativeImage;
@@ -15,10 +16,12 @@ public class SimpleTextureStore {
         return imageMap.get(texture);
     }
 
+    // Make sure to call this on texture creation, so we are able to access the NativeImage object.
     public void register(SimpleTexture texture, NativeImage image) {
         imageMap.put(texture, image);
     }
 
+    // Make sure to call this on texture removal so our map doesn't become invalid.
     public void unregister(SimpleTexture texture) {
         imageMap.remove(texture);
     }

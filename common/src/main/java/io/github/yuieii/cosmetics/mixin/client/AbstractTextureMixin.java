@@ -1,3 +1,4 @@
+// Copyright (c) 2024 Yuieii.
 package io.github.yuieii.cosmetics.mixin.client;
 
 import io.github.yuieii.cosmetics.client.UeCosmeticsClient;
@@ -13,9 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AbstractTextureMixin {
     @Inject(method = "releaseId", at = @At("TAIL"))
     public void ueCosmetics$injectReleaseId(CallbackInfo ci) {
-        AbstractTexture self = MixinUtils.castSelf(this);
-        if (self instanceof SimpleTexture simple) {
-            UeCosmeticsClient.getTextureStore().unregister(simple);
-        }
+        MixinUtils.tryCastFrom(this, SimpleTexture.class).ifPresent(t -> {
+            UeCosmeticsClient.getInstance().getTextureStore().unregister(t);
+        });
     }
 }

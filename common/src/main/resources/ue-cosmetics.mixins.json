@@ -6,7 +6,11 @@
   "client": [
     "client.AbstractTextureMixin",
     "client.HttpTextureMixin",
-    "client.SimpleTextureMixin"
+    "client.ISkullModelAccessor",
+    "client.LivingEntityRendererMixin",
+    "client.PlayerRendererMixin",
+    "client.SimpleTextureMixin",
+    "client.SkullBlockRendererMixin"
   ],
   "mixins": [
   ],
