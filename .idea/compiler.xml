@@ -10,6 +10,5 @@
         <module name="ue-cosmetics.common.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="21" />
   </component>
 </project>

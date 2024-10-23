@@ -4,22 +4,11 @@
     <facet type="minecraft" name="Minecraft">
       <configuration>
         <autoDetectTypes>
-          <platformType>MIXIN</platformType>
           <platformType>NEOFORGE</platformType>
-          <platformType>MCP</platformType>
+          <platformType>MIXIN</platformType>
         </autoDetectTypes>
         <projectReimportVersion>1</projectReimportVersion>
       </configuration>
     </facet>
-  </component>
-  <component name="McpModuleSettings">
-    <option name="minecraftVersion" value="1.21.2" />
-    <option name="platformVersion" value="21.2.1-beta" />
-    <option name="srgType" value="TSRG" />
-  </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
