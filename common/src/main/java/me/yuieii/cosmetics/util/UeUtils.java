@@ -13,9 +13,9 @@ public final class UeUtils {
 
     public static Color colorFromHexInFormatABGR(int hex) {
         int a = (hex >> 24) & 0xff;
-        int r = (hex >> 16) & 0xff;
+        int b = (hex >> 16) & 0xff;
         int g = (hex >> 8) & 0xff;
-        int b = hex & 0xff;
+        int r = hex & 0xff;
 
         return new Color(r, g, b, a);
     }
