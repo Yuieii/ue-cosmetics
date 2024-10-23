@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/me.yuieii.ue-cosmetics.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/me.yuieii.ue-cosmetics.forge.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/me.yuieii.ue-cosmetics.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/me.yuieii.ue-cosmetics.forge.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/me.yuieii.ue-cosmetics.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/me.yuieii.ue-cosmetics.neoforge.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/ue-cosmetics.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/ue-cosmetics.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/ue-cosmetics.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/ue-cosmetics.common.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/ue-cosmetics.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/ue-cosmetics.fabric.main.iml" />
