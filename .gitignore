@@ -1,0 +1,16 @@
+build/
+run/
+runs/
+out/
+.gradle/
+output/
+bin/
+libs/
+
+.classpath
+.project
+classes/
+.metadata
+.vscode
+.settings
+*.launch
