@@ -15,7 +15,9 @@ public final class Modifiers {
     // public static final Modifier CAT_TAIL = register("cat_tail", new ISkinSensitiveModifier());
 
     public static final Modifier EEVEE = register("eevee", new EeveeEarsModifier());
-    public static final Modifier MUSHROOM = register("mushroom", new MushroomModifier());
+
+    public static final Modifier RED_MUSHROOM = register("red_mushroom", new RedMushroomModifier());
+    public static final Modifier BROWN_MUSHROOM = register("brown_mushroom", new BrownMushroomModifier());
 
     public static void ensureLoad() {}
 
