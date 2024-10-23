@@ -35,7 +35,7 @@ public abstract class AbstractMushroomModifier extends AbstractBlockStateOnHeadM
         };
         // @formatter:on
 
-        if (!ISkinSensitiveModifier.colorsAllMatch(redPos, bitmap, new Color(0xca6262))) return false;
+        if (!ISkinSensitiveModifier.colorsAllMatch(redPos, bitmap, primaryColor)) return false;
         if (!ISkinSensitiveModifier.colorsAllMatch(whitePos, bitmap, new Color(0xffffff))) return false;
         if (!ISkinSensitiveModifier.colorsAllMatch(stemPos, bitmap, new Color(0xffd4bb))) return false;
 

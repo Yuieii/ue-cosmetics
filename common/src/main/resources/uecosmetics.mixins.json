@@ -8,7 +8,7 @@
   "client": [
     "client.AbstractTextureMixin",
     "client.HttpTextureMixin",
-    "client.ISkullModelAccessor",
+    "client.IModelAccessor",
     "client.LivingEntityRendererMixin",
     "client.NativeImageMixin",
     "client.PlayerRendererMixin",
