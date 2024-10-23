@@ -6,7 +6,7 @@ import me.yuieii.cosmetics.client.UeCosmeticsClient;
 import me.yuieii.cosmetics.util.OptionalBoolean;
 import me.yuieii.cosmetics.util.UeUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.state.PlayerRenderState;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -16,13 +16,13 @@ import java.awt.*;
 import java.util.function.Predicate;
 
 public interface ISkinSensitiveModifier {
-    default boolean isApplicable(PlayerRenderState player) {
+    default boolean isApplicable(AbstractClientPlayer player) {
         OptionalBoolean preCheck = this.isPlayerApplicable(player);
         if (preCheck.isPresent()) {
             return preCheck.get();
         }
 
-        ResourceLocation skinLocation = player.skin.texture();
+        ResourceLocation skinLocation = player.getSkinTextureLocation();
         TextureManager manager = Minecraft.getInstance().getTextureManager();
         AbstractTexture texture = manager.getTexture(skinLocation);
         if (!(texture instanceof SimpleTexture simple)) {
@@ -33,7 +33,7 @@ public interface ISkinSensitiveModifier {
         return this.isSkinApplicable(image);
     }
 
-    default OptionalBoolean isPlayerApplicable(PlayerRenderState player) {
+    default OptionalBoolean isPlayerApplicable(AbstractClientPlayer player) {
         return OptionalBoolean.empty();
     }
 

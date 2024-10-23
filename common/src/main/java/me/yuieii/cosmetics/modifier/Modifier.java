@@ -3,7 +3,7 @@ package me.yuieii.cosmetics.modifier;
 
 import me.yuieii.cosmetics.UeCosmetics;
 import me.yuieii.cosmetics.util.ClientModRegistries;
-import net.minecraft.client.renderer.entity.state.PlayerRenderState;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -46,7 +46,7 @@ public abstract class Modifier {
      * @param player the target player to test
      * @return {@code true} if the player can apply this modifier, otherwise {@code false}
      */
-    public abstract boolean isApplicable(PlayerRenderState player);
+    public abstract boolean isApplicable(AbstractClientPlayer player);
 
     private static String registryKey() {
         return ClientModRegistries.MODIFIER_REGISTRY.location().getPath();

@@ -40,7 +40,7 @@ public final class UeCosmetics {
     private static void sanityCheck() {
         // We need to make sure our mod ID is a valid namespace.
         // If that ID is invalid, we should fix this!
-        if (!ResourceLocation.isValidNamespace(MOD_ID)) {
+        if (!ResourceLocation.isValidResourceLocation(MOD_ID + ":path")) {
             throw new IllegalStateException("The mod ID is an invalid resource location namespace: " + MOD_ID);
         }
     }
@@ -52,6 +52,9 @@ public final class UeCosmetics {
      * @throws net.minecraft.ResourceLocationException if the given path is an invalid {@link ResourceLocation} path
      */
     public static ResourceLocation location(@NotNull String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+        ResourceLocation result = ResourceLocation.tryBuild(MOD_ID, path);
+        if (result != null) return result;
+
+        throw new IllegalArgumentException("Invalid path: " + path);
     }
 }

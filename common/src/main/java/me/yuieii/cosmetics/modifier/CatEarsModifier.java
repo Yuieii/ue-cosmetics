@@ -4,7 +4,7 @@ package me.yuieii.cosmetics.modifier;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import me.yuieii.cosmetics.mixin.client.IModelAccessor;
+import me.yuieii.cosmetics.mixin.client.ISkullModelAccessor;
 import me.yuieii.cosmetics.util.MixinUtils;
 import me.yuieii.cosmetics.util.OptionalBoolean;
 import me.yuieii.cosmetics.util.UeUtils;
@@ -17,9 +17,9 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 
@@ -39,7 +39,7 @@ public class CatEarsModifier extends Modifier implements ISkinSensitiveModifier,
         if (!(skullModelBase instanceof SkullModel model)) return;
 
         VertexConsumer vertexConsumer = buffer.getBuffer(renderType);
-        ModelPart rootPart = MixinUtils.castThenReturn(model, IModelAccessor::getRoot);
+        ModelPart rootPart = MixinUtils.castThenReturn(model, ISkullModelAccessor::getRoot);
         rootPart.getChild(CatEarsPartNames.CAT_EARS).render(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
     }
 
@@ -65,12 +65,12 @@ public class CatEarsModifier extends Modifier implements ISkinSensitiveModifier,
     }
 
     @Override
-    public boolean isApplicable(PlayerRenderState player) {
+    public boolean isApplicable(AbstractClientPlayer player) {
         return ISkinSensitiveModifier.super.isApplicable(player);
     }
 
     @Override
-    public OptionalBoolean isPlayerApplicable(PlayerRenderState player) {
+    public OptionalBoolean isPlayerApplicable(AbstractClientPlayer player) {
         return ISkinSensitiveModifier.super.isPlayerApplicable(player);
     }
 

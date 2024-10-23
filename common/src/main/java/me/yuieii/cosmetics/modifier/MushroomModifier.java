@@ -10,9 +10,9 @@ import me.yuieii.cosmetics.util.OptionalBoolean;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.SkullModelBase;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
@@ -21,12 +21,12 @@ import java.awt.*;
 
 public class MushroomModifier extends Modifier implements ISkinSensitiveModifier, IHeadPartModifier {
     @Override
-    public boolean isApplicable(PlayerRenderState player) {
+    public boolean isApplicable(AbstractClientPlayer player) {
         return ISkinSensitiveModifier.super.isApplicable(player);
     }
 
     @Override
-    public OptionalBoolean isPlayerApplicable(PlayerRenderState player) {
+    public OptionalBoolean isPlayerApplicable(AbstractClientPlayer player) {
         return ISkinSensitiveModifier.super.isPlayerApplicable(player);
     }
 

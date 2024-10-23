@@ -2,7 +2,6 @@
 package me.yuieii.cosmetics.util;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import net.minecraft.util.ARGB;
 
 import java.awt.*;
 import java.util.function.Consumer;
@@ -22,9 +21,7 @@ public final class UeUtils {
     }
 
     public static Color colorAtPixel(NativeImage image, int x, int y) {
-        // return UeUtils.colorFromHexInFormatABGR(image.getPixelRGBA(x, y));
-        int argb = image.getPixel(x, y);
-        return new Color(ARGB.red(argb), ARGB.green(argb), ARGB.blue(argb), ARGB.alpha(argb));
+        return UeUtils.colorFromHexInFormatABGR(image.getPixelRGBA(x, y));
     }
 
     public static <T> T with(T obj, Consumer<T> consumer) {

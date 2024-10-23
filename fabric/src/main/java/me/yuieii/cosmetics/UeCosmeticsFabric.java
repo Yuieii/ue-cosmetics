@@ -1,6 +1,7 @@
 package me.yuieii.cosmetics;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.player.AbstractClientPlayer;
 
 public final class UeCosmeticsFabric implements ModInitializer {
     @Override
