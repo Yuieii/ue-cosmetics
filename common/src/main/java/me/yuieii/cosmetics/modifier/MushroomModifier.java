@@ -32,7 +32,7 @@ public class MushroomModifier extends Modifier implements ISkinSensitiveModifier
 
     @Override
     public boolean isSkinApplicable(NativeImage texture) {
-        return true; // MushroomModifier.validateYuieiiMushroomPattern(texture, false);
+        return MushroomModifier.validateYuieiiMushroomPattern(texture, false);
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
