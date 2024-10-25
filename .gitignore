@@ -7,6 +7,11 @@ output/
 bin/
 libs/
 
+.idea/
+*.iml
+*.iws
+*.ipr
+
 .classpath
 .project
 classes/
