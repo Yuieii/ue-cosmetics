@@ -1,10 +1,9 @@
 package me.yuieii.cosmetics.modifier;
 
-import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import me.yuieii.cosmetics.util.AutoPoseStack;
+import me.yuieii.cosmetics.client.util.AutoPoseStack;
 import me.yuieii.cosmetics.util.OptionalBoolean;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
@@ -14,10 +13,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.awt.*;
 
 public abstract class AbstractBlockStateOnHeadModifier extends Modifier implements ISkinSensitiveModifier, IHeadPartModifier {
     public abstract BlockState getBlockState();

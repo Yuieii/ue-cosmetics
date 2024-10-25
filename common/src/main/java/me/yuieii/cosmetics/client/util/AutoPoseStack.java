@@ -1,4 +1,4 @@
-package me.yuieii.cosmetics.util;
+package me.yuieii.cosmetics.client.util;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 

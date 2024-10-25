@@ -1,5 +1,5 @@
 // Copyright (c) 2024 Yuieii.
-package me.yuieii.cosmetics.util;
+package me.yuieii.cosmetics.client.util;
 
 import com.mojang.serialization.Lifecycle;
 import me.yuieii.cosmetics.UeCosmetics;

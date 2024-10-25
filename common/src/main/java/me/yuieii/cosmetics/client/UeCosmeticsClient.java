@@ -1,8 +1,7 @@
 // Copyright (c) 2024 Yuieii.
 package me.yuieii.cosmetics.client;
 
-import me.yuieii.cosmetics.util.ClientModRegistries;
-import me.yuieii.cosmetics.util.SimpleTextureStore;
+import me.yuieii.cosmetics.client.util.ClientModRegistries;
 
 public final class UeCosmeticsClient {
     private static IModClient INSTANCE = null;

@@ -1,5 +1,5 @@
 // Copyright (c) 2024 Yuieii.
-package me.yuieii.cosmetics.util;
+package me.yuieii.cosmetics.client.util;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.client.renderer.texture.SimpleTexture;

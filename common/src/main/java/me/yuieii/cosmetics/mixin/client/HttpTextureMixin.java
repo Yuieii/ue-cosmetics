@@ -11,11 +11,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HttpTexture.class)
-public class HttpTextureMixin {
+public class HttpTextureMixin extends SimpleTextureMixin {
     @Inject(method = "upload", at = @At("HEAD"))
     public void ueCosmetics$injectDoLoad(NativeImage image, CallbackInfo ci) {
         MixinUtils.tryCastFrom(this, HttpTexture.class).ifPresent(t -> {
             UeCosmeticsClient.getInstance().getTextureStore().register(t, image);
+            this.ueCosmetics$loadForPotentialSkin(image);
         });
     }
 }

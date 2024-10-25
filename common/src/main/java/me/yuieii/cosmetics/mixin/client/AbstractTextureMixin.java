@@ -4,7 +4,7 @@ package me.yuieii.cosmetics.mixin.client;
 import com.mojang.blaze3d.platform.NativeImage;
 import me.yuieii.cosmetics.client.UeCosmeticsClient;
 import me.yuieii.cosmetics.util.MixinUtils;
-import me.yuieii.cosmetics.util.SimpleTextureStore;
+import me.yuieii.cosmetics.client.util.SimpleTextureStore;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import org.spongepowered.asm.mixin.Mixin;
