@@ -1,13 +1,12 @@
 // Copyright (c) 2024 Yuieii.
 package me.yuieii.cosmetics.mixin.client;
 
-import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
-import me.yuieii.cosmetics.client.UeCosmeticsClient;
+import me.yuieii.cosmetics.client.extension.ISimpleTextureExtension;
 import me.yuieii.cosmetics.modifier.IHeadPartModifier;
 import me.yuieii.cosmetics.modifier.ISkinSensitiveModifier;
 import me.yuieii.cosmetics.modifier.Modifier;
-import me.yuieii.cosmetics.util.ClientModRegistries;
+import me.yuieii.cosmetics.client.util.ClientModRegistries;
 import me.yuieii.cosmetics.util.MixinUtils;
 import me.yuieii.cosmetics.util.UeStream;
 import net.minecraft.client.Minecraft;
@@ -16,7 +15,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.texture.AbstractTexture;
-import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
@@ -42,9 +40,8 @@ public class SkullBlockRendererMixin {
                 .filter(m -> m instanceof IHeadPartModifier && m instanceof ISkinSensitiveModifier)
                 .forEach(m -> {
                     AbstractTexture texture = Minecraft.getInstance().getTextureManager().getTexture(location);
-                    MixinUtils.tryCastFrom(texture, SimpleTexture.class).ifPresent(t -> {
-                        NativeImage bitmap = UeCosmeticsClient.getInstance().getTextureStore().get(t);
-                        if (((ISkinSensitiveModifier) m).isSkinApplicable(bitmap)) {
+                    MixinUtils.tryCastFrom(texture, ISimpleTextureExtension.class).ifPresent(t -> {
+                        if (t.uecosmetics$getData((ISkinSensitiveModifier) m).isApplicable()) {
                             applicableModifiers.add(m);
                         }
                     });

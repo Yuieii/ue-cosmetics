@@ -1,6 +1,8 @@
 // Copyright (c) 2024 Yuieii.
 package me.yuieii.cosmetics.util;
 
+import org.jetbrains.annotations.Contract;
+
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -32,11 +34,12 @@ public final class MixinUtils {
      * @param <T> the returned type
      */
     @SuppressWarnings("unchecked")
+    @Contract("null -> null; !null -> !null")
     public static <T> T castFrom(Object target) {
         return (T) target;
     }
 
-    @SuppressWarnings("unchecked")
+    @Contract("null,_ -> null; !null,_ -> !null")
     public static <T> T castFrom(Object target, Class<T> cls) {
         return cls.cast(target);
     }

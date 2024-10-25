@@ -2,7 +2,8 @@
 package me.yuieii.cosmetics.modifier;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import me.yuieii.cosmetics.client.UeCosmeticsClient;
+import me.yuieii.cosmetics.client.extension.ISimpleTextureExtension;
+import me.yuieii.cosmetics.util.MixinUtils;
 import me.yuieii.cosmetics.util.OptionalBoolean;
 import me.yuieii.cosmetics.util.UeUtils;
 import net.minecraft.client.Minecraft;
@@ -29,14 +30,25 @@ public interface ISkinSensitiveModifier {
             return false;
         }
 
-        NativeImage image = UeCosmeticsClient.getInstance().getTextureStore().get(simple);
-        return this.isSkinApplicable(image);
+        SkinSensitiveModifierData data = MixinUtils.castFrom(simple, ISimpleTextureExtension.class)
+                .uecosmetics$getData(this);
+        return data.isApplicable();
     }
 
     default OptionalBoolean isPlayerApplicable(AbstractClientPlayer player) {
         return OptionalBoolean.empty();
     }
 
+    /**
+     * Determine if this skin texture is allowed to use this modifier.
+     *
+     * <p>
+     *     Only called when the texture is about to be uploaded to the GPU, aka loading phase.
+     *     <strong>This is not for usage at arbitrary timings.</strong>
+     * </p>
+     * @param texture The skin texture.
+     * @return Whether the skin texture is allowed to use this modifier.
+     */
     default boolean isSkinApplicable(NativeImage texture) {
         return false;
     }

@@ -2,6 +2,8 @@
 package me.yuieii.cosmetics.util;
 
 import com.mojang.blaze3d.platform.NativeImage;
+import me.yuieii.cosmetics.UeCosmetics;
+import me.yuieii.cosmetics.mixin.client.INativeImageAccessor;
 
 import java.awt.*;
 import java.util.function.Consumer;
@@ -21,6 +23,15 @@ public final class UeUtils {
     }
 
     public static Color colorAtPixel(NativeImage image, int x, int y) {
+        if (MixinUtils.castFrom(image, INativeImageAccessor.class).uecosmetics$getPixels() == 0) {
+            // It is an error to read pixels after the texture is closed.
+            // We only read the data right before the texture is uploaded to GPU!
+            throw new IllegalStateException(
+                    "The image has been deallocated. " +
+                            "Make sure you only access the texture before it is automatically closed."
+            );
+        }
+
         return UeUtils.colorFromHexInFormatABGR(image.getPixelRGBA(x, y));
     }
 

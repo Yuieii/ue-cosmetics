@@ -2,7 +2,7 @@
 package me.yuieii.cosmetics.modifier;
 
 import me.yuieii.cosmetics.UeCosmetics;
-import me.yuieii.cosmetics.util.ClientModRegistries;
+import me.yuieii.cosmetics.client.util.ClientModRegistries;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

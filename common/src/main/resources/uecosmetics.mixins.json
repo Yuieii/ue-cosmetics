@@ -9,8 +9,8 @@
     "client.AbstractTextureMixin",
     "client.HttpTextureMixin",
     "client.ISkullModelAccessor",
+    "client.INativeImageAccessor",
     "client.LivingEntityRendererMixin",
-    "client.NativeImageMixin",
     "client.PlayerRendererMixin",
     "client.SimpleTextureMixin",
     "client.SkullBlockRendererMixin"
