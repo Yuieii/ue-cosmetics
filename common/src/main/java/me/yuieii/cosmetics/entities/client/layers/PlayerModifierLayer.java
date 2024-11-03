@@ -29,15 +29,15 @@ public class PlayerModifierLayer extends RenderLayer<PlayerRenderState, PlayerMo
         int overlay = LivingEntityRenderer.getOverlayCoords(player, 0);
 
         ClientModRegistries.MODIFIERS.stream()
-                .filter(m -> m.isApplicable(player))
-                .forEach(m -> {
-                    UeUtils.with(m)
-                            .ifInstanceOf(IHeadPartModifier.class, t -> {
-                                t.renderPlayerHeadPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
-                            })
-                            .ifInstanceOf(IBodyPartModifier.class, t -> {
-                                t.renderPlayerBodyPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
-                            });
-                });
+            .filter(m -> m.isApplicable(player))
+            .forEach(m -> {
+                UeUtils.with(m)
+                    .ifInstanceOf(IHeadPartModifier.class, t -> {
+                        t.renderPlayerHeadPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
+                    })
+                    .ifInstanceOf(IBodyPartModifier.class, t -> {
+                        t.renderPlayerBodyPart(model, poseStack, bufferSource, vertexConsumer, packedLight, overlay);
+                    });
+            });
     }
 }
