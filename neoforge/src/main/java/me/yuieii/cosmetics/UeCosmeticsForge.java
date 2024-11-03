@@ -3,7 +3,7 @@ package me.yuieii.cosmetics;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
-@Mod(UeCosmetics.MOD_ID_FORGE)
+@Mod(UeCosmetics.MOD_ID)
 public class UeCosmeticsForge {
     public UeCosmeticsForge(IEventBus eventBus) {
         // This method is invoked by the NeoForge mod loader when it is ready
