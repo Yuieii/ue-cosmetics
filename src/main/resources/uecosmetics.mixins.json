@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.yuieii.cosmetics.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "uecosmetics.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "client.AbstractTextureMixin",
+    "client.HttpTextureMixin",
+    "client.IModelAccessor",
+    "client.INativeImageAccessor",
+    "client.ISkullBlockRendererAccessor",
+    "client.LivingEntityRendererMixin",
+    "client.PlayerRendererMixin",
+    "client.SimpleTextureMixin",
+    "client.SkullBlockRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
