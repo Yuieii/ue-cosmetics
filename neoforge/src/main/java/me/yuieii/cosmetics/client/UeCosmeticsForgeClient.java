@@ -7,11 +7,7 @@ import net.neoforged.fml.common.Mod;
 
 @Mod(value = UeCosmetics.MOD_ID_FORGE, dist = Dist.CLIENT)
 public class UeCosmeticsForgeClient {
-    public static void init() {
-        UeCosmeticsClient.init();
-    }
-
     public UeCosmeticsForgeClient(IEventBus eventBus) {
-        UeCosmeticsForgeClient.init();
+        UeCosmeticsClient.init();
     }
 }
