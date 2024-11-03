@@ -11,9 +11,7 @@ public final class UeCosmetics {
     /**
      * The ID of this mod. It is the namespace of all the {@link ResourceLocation} this mod owns.
      */
-    public static final String MOD_ID = "ue-cosmetics";
-
-    public static final String MOD_ID_FORGE = "uecosmetics";
+    public static final String MOD_ID = "uecosmetics";
 
     /**
      * The product name of this mod. It is shown to mod users.

@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-@Mod(UeCosmetics.MOD_ID_FORGE)
+@Mod(UeCosmetics.MOD_ID)
 public class UeCosmeticsForge {
     public UeCosmeticsForge() {
         // This method is invoked by the Forge mod loader when it is ready
