@@ -2,6 +2,8 @@
 package me.yuieii.cosmetics;
 
 import me.yuieii.cosmetics.modifier.Modifiers;
+import me.yuieii.cosmetics.platform.Services;
+import me.yuieii.cosmetics.platform.services.IPlatformHelper;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +33,14 @@ public final class UeCosmetics {
     public static void init() {
         UeCosmetics.sanityCheck();
         LOGGER.info("Initializing: {} version {}", PRODUCT_NAME, VERSION);
+
+        IPlatformHelper platform = Services.PLATFORM;
+        LOGGER.info(
+                "{} is running on platform {} ({})",
+                PRODUCT_NAME,
+                platform.getPlatformName(),
+                platform.getEnvironmentName()
+        );
 
         Modifiers.ensureLoad();
     }
