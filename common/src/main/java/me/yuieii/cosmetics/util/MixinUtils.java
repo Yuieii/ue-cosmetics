@@ -27,7 +27,6 @@ public final class MixinUtils {
      *     // Type can be automatically inferred from the declared variable type
      *     PlayerModel&lt;Piglin&gt; self = MixinUtils.castFrom(this);
      * </pre>
-     * </p>
      *
      * @param target the object to be interpreted
      * @return the same object but of {@code T} type
