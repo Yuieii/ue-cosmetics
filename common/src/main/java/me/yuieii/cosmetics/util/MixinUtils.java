@@ -45,7 +45,7 @@ public final class MixinUtils {
 
     public static <T> Optional<T> tryCastFrom(Object target) {
         try {
-            return Optional.of(MixinUtils.castFrom(target));
+            return Optional.ofNullable(MixinUtils.castFrom(target));
         } catch (ClassCastException ex) {
             return Optional.empty();
         }
@@ -53,7 +53,7 @@ public final class MixinUtils {
 
     public static <T> Optional<T> tryCastFrom(Object target, Class<T> cls) {
         try {
-            return Optional.of(MixinUtils.castFrom(target, cls));
+            return Optional.ofNullable(MixinUtils.castFrom(target, cls));
         } catch (ClassCastException ex) {
             return Optional.empty();
         }
