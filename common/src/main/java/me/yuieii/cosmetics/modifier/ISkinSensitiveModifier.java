@@ -1,15 +1,14 @@
-// Copyright (c) 2024 Yuieii.
+// Copyright (c) 2024-2025 Yuieii.
 package me.yuieii.cosmetics.modifier;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import me.yuieii.cosmetics.client.extension.ISimpleTextureExtension;
+import me.yuieii.cosmetics.client.extension.IReloadableTextureExtension;
 import me.yuieii.cosmetics.util.MixinUtils;
 import me.yuieii.cosmetics.util.OptionalBoolean;
 import me.yuieii.cosmetics.util.UeUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.AbstractTexture;
-import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 
@@ -26,12 +25,9 @@ public interface ISkinSensitiveModifier {
         ResourceLocation skinLocation = player.skin.texture();
         TextureManager manager = Minecraft.getInstance().getTextureManager();
         AbstractTexture texture = manager.getTexture(skinLocation);
-        if (!(texture instanceof SimpleTexture simple)) {
-            return false;
-        }
 
-        SkinSensitiveModifierData data = MixinUtils.castFrom(simple, ISimpleTextureExtension.class)
-                .uecosmetics$getData(this);
+        SkinSensitiveModifierData data = MixinUtils.castFrom(texture, IReloadableTextureExtension.class)
+            .uecosmetics$getData(this);
         return data.isApplicable();
     }
 

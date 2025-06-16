@@ -7,13 +7,14 @@
   "mixins": [],
   "client": [
     "client.AbstractTextureMixin",
-    "client.HttpTextureMixin",
+    "client.SkinTextureDownloaderMixin",
     "client.IModelAccessor",
     "client.INativeImageAccessor",
     "client.LivingEntityRendererMixin",
     "client.PlayerRendererMixin",
-    "client.SimpleTextureMixin",
-    "client.SkullBlockRendererMixin"
+    "client.ReloadableTextureMixin",
+    "client.SkullBlockRendererMixin",
+    "client.RenderTypeMixin"
   ],
   "server": [],
   "injectors": {

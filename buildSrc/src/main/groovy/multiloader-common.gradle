@@ -82,6 +82,8 @@ processResources {
                        'group'                        : project.group, //Else we target the task's group.
                        'minecraft_version'            : minecraft_version,
                        'minecraft_version_range'      : minecraft_version_range,
+                       // Fabric loves semver when we sometimes cannot conform to semver
+                       'minecraft_version_fabric'     : minecraft_version_fabric,
                        'fabric_version'               : fabric_version,
                        'fabric_loader_version'        : fabric_loader_version,
                        'mod_name'                     : mod_name,

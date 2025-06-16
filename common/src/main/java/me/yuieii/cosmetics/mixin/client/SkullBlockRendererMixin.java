@@ -1,8 +1,11 @@
-// Copyright (c) 2024 Yuieii.
+// Copyright (c) 2024-2025 Yuieii.
 package me.yuieii.cosmetics.mixin.client;
 
+import com.mojang.blaze3d.opengl.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import me.yuieii.cosmetics.client.extension.ISimpleTextureExtension;
+import me.yuieii.cosmetics.client.extension.IReloadableTextureExtension;
+import me.yuieii.cosmetics.client.extension.IRenderTypeExtension;
 import me.yuieii.cosmetics.modifier.IHeadPartModifier;
 import me.yuieii.cosmetics.modifier.ISkinSensitiveModifier;
 import me.yuieii.cosmetics.modifier.Modifier;
@@ -29,34 +32,21 @@ import java.util.List;
 
 @Mixin(SkullBlockRenderer.class)
 public class SkullBlockRendererMixin {
-    @Unique
-    private static final List<Modifier> applicableModifiers = new ArrayList<>();
-
-    @ModifyArg(method = "getRenderType", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderType;entityTranslucent(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;"))
-    private static ResourceLocation ueCosmetics$injectRenderType(ResourceLocation location) {
-        applicableModifiers.clear();
-
-        ClientModRegistries.MODIFIERS.stream()
-                .filter(m -> m instanceof IHeadPartModifier && m instanceof ISkinSensitiveModifier)
-                .forEach(m -> {
-                    AbstractTexture texture = Minecraft.getInstance().getTextureManager().getTexture(location);
-                    MixinUtils.tryCastFrom(texture, ISimpleTextureExtension.class).ifPresent(t -> {
-                        if (t.uecosmetics$getData((ISkinSensitiveModifier) m).isApplicable()) {
-                            applicableModifiers.add(m);
-                        }
-                    });
-                });
-
-        return location;
-    }
-
     @Inject(method = "renderSkull", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;popPose()V"))
     private static void ueCosmetics$injectPostRenderSkullModel(Direction direction, float yRot, float mouthAnimation, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, SkullModelBase model, RenderType renderType, CallbackInfo ci) {
-        UeStream.stream(applicableModifiers.stream())
-                .instanceOf(IHeadPartModifier.class)
-                .forEach(m -> {
-                    m.renderOnSkull(direction, yRot, mouthAnimation, poseStack, bufferSource, packedLight, model, renderType);
-                });
-        applicableModifiers.clear();
+        MixinUtils.tryCastFrom(renderType, IRenderTypeExtension.class)
+            .flatMap(IRenderTypeExtension::uecosmetics$boundTexture)
+            .ifPresent(location -> {
+                ClientModRegistries.MODIFIERS.stream()
+                    .filter(m -> m instanceof IHeadPartModifier && m instanceof ISkinSensitiveModifier)
+                    .forEach(m -> {
+                        AbstractTexture texture = Minecraft.getInstance().getTextureManager().getTexture(location);
+                        MixinUtils.tryCastFrom(texture, IReloadableTextureExtension.class).ifPresent(t -> {
+                            if (t.uecosmetics$getData((ISkinSensitiveModifier) m).isApplicable()) {
+                                ((IHeadPartModifier) m).renderOnSkull(direction, yRot, mouthAnimation, poseStack, bufferSource, packedLight, model, renderType);
+                            }
+                        });
+                    });
+        });
     }
 }
