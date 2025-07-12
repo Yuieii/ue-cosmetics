@@ -20,4 +20,9 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     public boolean isDevelopmentEnvironment() {
         return !FMLLoader.isProduction();
     }
+
+    @Override
+    public PlatformFamily getPlatformFamily() {
+        return PlatformFamily.FORGE;
+    }
 }

@@ -20,4 +20,9 @@ public class FabricPlatformHelper implements IPlatformHelper {
     public boolean isDevelopmentEnvironment() {
         return this.loader.isDevelopmentEnvironment();
     }
+
+    @Override
+    public PlatformFamily getPlatformFamily() {
+        return PlatformFamily.FABRIC;
+    }
 }

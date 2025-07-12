@@ -16,9 +16,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(SkinTextureDownloader.class)
-public class SkinTextureDownloaderMixin {
-    @Inject(method = "lambda$registerTextureInManager$2", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/TextureManager;register(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private static void ueCosmetics$injectDoLoad(ResourceLocation p_389574_, NativeImage bitmap, Minecraft minecraft, CallbackInfoReturnable<ResourceLocation> cir, DynamicTexture texture) {
+public class SkinTextureDownloaderIntermediateMixin {
+    // method_65864 => lambda$registerTextureInManager$2(...)
+    @Inject(method = "method_65864", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/TextureManager;register(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)V"), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+    private static void ueCosmetics$injectDoLoad_intermediate(ResourceLocation p_389574_, NativeImage bitmap, Minecraft minecraft, CallbackInfoReturnable<ResourceLocation> cir, DynamicTexture texture) {
         SkinTextureUtils.loadPotentialSkin(bitmap, texture);
     }
 }

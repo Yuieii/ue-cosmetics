@@ -32,4 +32,15 @@ public interface IPlatformHelper {
     default String getEnvironmentName() {
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    enum PlatformFamily {
+        FABRIC,
+        FORGE,
+    }
+
+    PlatformFamily getPlatformFamily();
+
+    default boolean isUsingIntermediateMapping() {
+        return this.getPlatformFamily() == PlatformFamily.FABRIC;
+    }
 }

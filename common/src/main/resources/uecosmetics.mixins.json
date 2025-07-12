@@ -5,9 +5,11 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [],
+  "plugin": "me.yuieii.cosmetics.mixin.ModMixinPlugin",
   "client": [
     "client.AbstractTextureMixin",
     "client.SkinTextureDownloaderMixin",
+    "client.SkinTextureDownloaderIntermediateMixin",
     "client.IModelAccessor",
     "client.INativeImageAccessor",
     "client.LivingEntityRendererMixin",
