@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Yuieii.
+// Copyright (c) 2024-2025 Yuieii.
 package me.yuieii.cosmetics.util;
 
 import org.jetbrains.annotations.Nullable;
@@ -107,6 +107,22 @@ public enum TriState {
         if (other.isUnset()) return this;
 
         return other;
+    }
+
+    public net.minecraft.util.TriState toMinecraftTriState() {
+        return switch (this) {
+            case UNSET -> net.minecraft.util.TriState.DEFAULT;
+            case TRUE -> net.minecraft.util.TriState.TRUE;
+            case FALSE -> net.minecraft.util.TriState.FALSE;
+        };
+    }
+
+    public static TriState fromMinecraftTriState(net.minecraft.util.TriState state) {
+        return switch (state) {
+            case TRUE -> TriState.TRUE;
+            case FALSE -> TriState.FALSE;
+            case DEFAULT -> TriState.UNSET;
+        };
     }
 
     @FunctionalInterface
