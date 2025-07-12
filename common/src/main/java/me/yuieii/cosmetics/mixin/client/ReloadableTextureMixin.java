@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ReloadableTexture.class)
 public class ReloadableTextureMixin extends AbstractTextureMixin implements IReloadableTextureExtension {
-    @Inject(method = "doLoad", at = @At("HEAD"))
+    @Inject(method = "doLoad", at = @At("RETURN"))
     public void ueCosmetics$injectDoLoad(NativeImage image, boolean blur, boolean clamp, CallbackInfo ci) {
         MixinUtils.tryCastFrom(this, SimpleTexture.class).ifPresent(t -> {
             UeCosmeticsClient.getInstance().getTextureStore().register(t, image);
