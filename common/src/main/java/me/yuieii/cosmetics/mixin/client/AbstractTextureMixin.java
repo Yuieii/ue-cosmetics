@@ -64,7 +64,7 @@ public class AbstractTextureMixin implements IReloadableTextureExtension {
     @Override
     public SkinSensitiveModifierData uecosmetics$getData(ISkinSensitiveModifier modifier) {
         SkinSensitiveModifierData result = this.ueCosmetics$skinModifierData.get(modifier);
-        if (result == null && !this.ueCosmetics$skinModifierData.isEmpty()) {
+        if (result == null) {
             throw new IllegalStateException(
                     "Every mapping from ISkinSensitiveModifier to SkinSensitiveModifierData must be registered at loading phase. " +
                             "Found missing data for modifier: " + modifier
