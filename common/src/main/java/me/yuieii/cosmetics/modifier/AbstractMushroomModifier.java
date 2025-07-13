@@ -21,7 +21,7 @@ public abstract class AbstractMushroomModifier extends AbstractBlockStateOnHeadM
         // For this we want an exact same mushroom pattern placed at the most top left.
         // @formatter:off
         int[] redPos = {
-                3, 4, 4, 4,
+                /**/  3, 4, 4, 4,
                 2, 5,       4, 5, 5, 5,
                 2, 6, 3, 6, 4, 6, 5, 6
         };

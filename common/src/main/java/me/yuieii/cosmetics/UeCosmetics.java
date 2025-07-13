@@ -4,10 +4,13 @@ package me.yuieii.cosmetics;
 import me.yuieii.cosmetics.modifier.Modifiers;
 import me.yuieii.cosmetics.platform.Services;
 import me.yuieii.cosmetics.platform.services.IPlatformHelper;
+import me.yuieii.cosmetics.util.UeStream;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 public final class UeCosmetics {
     /**

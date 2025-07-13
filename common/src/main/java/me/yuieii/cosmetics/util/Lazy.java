@@ -6,14 +6,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public class Lazy<T> implements Supplier<T> {
-    protected boolean initialized;
-    protected T value;
+public final class Lazy<T> implements Supplier<T> {
+    private boolean valueCreated;
+    private @Nullable  T value;
 
     private final Supplier<T> initializer;
 
     @Contract(value = "null -> fail", pure = true)
-    public Lazy(Supplier<T> initializer) {
+    public Lazy(Supplier<@Nullable T> initializer) {
         if (initializer == null) {
             throw new IllegalArgumentException("initializer must not be null");
         }
@@ -24,13 +24,17 @@ public class Lazy<T> implements Supplier<T> {
     @Override
     @Nullable
     public T get() {
-        if (this.initialized) {
+        if (this.valueCreated) {
             return this.value;
         }
 
         this.value = this.initializer.get();
-        this.initialized = true;
+        this.valueCreated = true;
 
         return this.value;
+    }
+
+    public boolean isValueCreated() {
+        return this.valueCreated;
     }
 }

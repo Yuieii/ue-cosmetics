@@ -5,6 +5,7 @@ import com.mojang.blaze3d.platform.NativeImage;
 import me.yuieii.cosmetics.client.extension.IReloadableTextureExtension;
 import me.yuieii.cosmetics.util.MixinUtils;
 import me.yuieii.cosmetics.util.OptionalBoolean;
+import me.yuieii.cosmetics.util.UeStream;
 import me.yuieii.cosmetics.util.UeUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
@@ -13,6 +14,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public interface ISkinSensitiveModifier {
@@ -39,9 +41,9 @@ public interface ISkinSensitiveModifier {
      * Determine if this skin texture is allowed to use this modifier.
      *
      * <p>
-     *     Only called when the texture is about to be uploaded to the GPU, aka loading phase.
-     *     <strong>This is not for usage at arbitrary timings.</strong>
-     * </p>
+     * Only called when the texture is about to be uploaded to the GPU, aka loading phase.
+     * <strong>This is not for usage at arbitrary timings.</strong>
+     *
      * @param texture The skin texture.
      * @return Whether the skin texture is allowed to use this modifier.
      */
@@ -54,18 +56,18 @@ public interface ISkinSensitiveModifier {
     }
 
     private static boolean colorsAllMatch(int[] positions, NativeImage bitmap, Predicate<Color> predicate) {
-        if (positions.length % 2 != 0) {
-            throw ISkinSensitiveModifier.createIllegalPositionArrayArgumentException();
-        }
+        final int components = 2;
+        return UeStream.stream(Arrays.stream(positions).boxed())
+                .chunk(new Integer[components])
+                .allMatch(pos -> {
+                    if (pos.length != components) {
+                        throw ISkinSensitiveModifier.createIllegalPositionArrayArgumentException();
+                    }
 
-        for (int i = 0; i < positions.length; i += 2) {
-            int x = positions[i];
-            int y = positions[i + 1];
-
-            if (!predicate.test(UeUtils.colorAtPixel(bitmap, x, y))) return false;
-        }
-
-        return true;
+                    int x = pos[0];
+                    int y = pos[1];
+                    return predicate.test(UeUtils.colorAtPixel(bitmap, x, y));
+                });
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")

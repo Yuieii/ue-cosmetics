@@ -2,6 +2,7 @@
 package me.yuieii.cosmetics.util;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -39,7 +40,7 @@ public final class MixinUtils {
     }
 
     @Contract("null,_ -> null; !null,_ -> !null")
-    public static <T> T castFrom(Object target, Class<T> cls) {
+    public static <T> T castFrom(Object target, @NotNull Class<T> cls) {
         return cls.cast(target);
     }
 
@@ -51,7 +52,7 @@ public final class MixinUtils {
         }
     }
 
-    public static <T> Optional<T> tryCastFrom(Object target, Class<T> cls) {
+    public static <T> Optional<T> tryCastFrom(Object target, @NotNull Class<T> cls) {
         try {
             return Optional.ofNullable(MixinUtils.castFrom(target, cls));
         } catch (ClassCastException ex) {
@@ -59,19 +60,37 @@ public final class MixinUtils {
         }
     }
 
-    public static <T> void castThen(Object target, Consumer<T> consumer) {
+    public static <T> void castThen(Object target, @NotNull Consumer<T> consumer) {
+        if (target == null) {
+            return;
+        }
+
         consumer.accept(MixinUtils.castFrom(target));
     }
 
-    public static <T> void castThen(Object target, Class<T> cls, Consumer<T> consumer) {
+    public static <T> void castThen(Object target, @NotNull Class<T> cls, @NotNull Consumer<T> consumer) {
+        if (target == null) {
+            return;
+        }
+
         consumer.accept(MixinUtils.castFrom(target));
     }
 
-    public static <T, R> R castThenReturn(Object target,Function<T, R> function) {
+    @Contract("null,_ -> null; !null,_ -> !null")
+    public static <T, R> R castThenReturn(Object target, @NotNull Function<T, R> function) {
+        if (target == null) {
+            return null;
+        }
+
         return function.apply(MixinUtils.castFrom(target));
     }
 
-    public static <T, R> R castThenReturn(Object target, Class<T> cls, Function<T, R> function) {
+    @Contract("null,_,_ -> null; !null,_,_ -> !null")
+    public static <T, R> R castThenReturn(Object target, @NotNull Class<T> cls, @NotNull Function<T, R> function) {
+        if (target == null) {
+            return null;
+        }
+
         return function.apply(MixinUtils.castFrom(target));
     }
 }

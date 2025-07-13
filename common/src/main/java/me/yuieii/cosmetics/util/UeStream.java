@@ -3,10 +3,7 @@ package me.yuieii.cosmetics.util;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Spliterator;
+import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
@@ -23,6 +20,51 @@ public class UeStream<T> implements Stream<T> {
 
     public <O> UeStream<O> instanceOf(Class<O> clz) {
         return new UeStream<>(this.stream.filter(c -> clz.isAssignableFrom(c.getClass())).map(clz::cast));
+    }
+
+    public UeStream<T[]> chunk(T[] meta) {
+        ArrayList<T> storage = new ArrayList<>();
+        Spliterator<T> spliterator = this.stream.spliterator();
+
+        Stream<T[]> s = StreamSupport.stream(new Spliterator<>() {
+            @Override
+            public boolean tryAdvance(Consumer<? super T[]> action) {
+                boolean canAdvance = true;
+                storage.clear();
+
+                for (int i = 0; i < meta.length; i++) {
+                    if (!spliterator.tryAdvance(storage::add)) {
+                        canAdvance = false;
+                        break;
+                    }
+                }
+
+                if (!storage.isEmpty()) {
+                    T[] arr = Arrays.copyOf(meta, storage.size());
+                    arr = storage.toArray(arr);
+                    action.accept(arr);
+                }
+
+                return canAdvance;
+            }
+
+            @Override
+            public Spliterator<T[]> trySplit() {
+                return this;
+            }
+
+            @Override
+            public long estimateSize() {
+                return Long.MAX_VALUE;
+            }
+
+            @Override
+            public int characteristics() {
+                return Spliterator.ORDERED;
+            }
+        }, false);
+
+        return new UeStream<>(s);
     }
 
     @Override
