@@ -27,36 +27,16 @@ public class ModMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        List<Supplier<TriState>> handlers = List.of(
-            () -> this.shouldApplySkinTextureDownloaderMixin(mixinClassName)
-        );
-
-        for (Supplier<TriState> handler : handlers) {
-            TriState result = handler.get();
-            if (result.isSet()) {
-                return result.toBoolean();
-            }
-        }
+        // List<Supplier<TriState>> handlers = List.of();
+        //
+        // for (Supplier<TriState> handler : handlers) {
+        //     TriState result = handler.get();
+        //     if (result.isSet()) {
+        //         return result.toBoolean();
+        //     }
+        // }
 
         return true;
-    }
-
-    private TriState shouldApplySkinTextureDownloaderMixin(String mixinClassName) {
-        boolean isSkinTextureDownloaderMixin = mixinClassName.startsWith("me.yuieii.cosmetics.mixin.client.SkinTextureDownloader") && mixinClassName.endsWith("Mixin");
-        if (isSkinTextureDownloaderMixin) {
-            boolean isIntermediate = Services.PLATFORM.isUsingIntermediateMapping();
-            boolean isIntermediateMixin = mixinClassName.contains("Intermediate");
-            boolean shouldApply = isIntermediate == isIntermediateMixin;
-
-            if (shouldApply) {
-                String type = isIntermediate ? "intermediate" : "regular";
-                LOGGER.info("Applying {} mapping for SkinTextureDownloader", type);
-            }
-
-            return TriState.fromBoolean(shouldApply);
-        }
-
-        return TriState.UNSET;
     }
 
     @Override
