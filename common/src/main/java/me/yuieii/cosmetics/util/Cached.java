@@ -9,6 +9,7 @@ public final class Cached<T> implements Supplier<T> {
     private final Supplier<T> initializer;
     private Lazy<T> lazy;
 
+    @SuppressWarnings("Contract")
     @Contract(value = "null -> fail", pure = true)
     public Cached(Supplier<T> initializer) {
         this.initializer = initializer;
